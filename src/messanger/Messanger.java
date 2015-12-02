@@ -8,6 +8,7 @@ package messanger;
 /**
  *
  * @author Wojciech
+ * @author Jakub
  */
 public class Messanger {
 
