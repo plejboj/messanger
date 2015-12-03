@@ -7,9 +7,12 @@ package messanger;
 
 /**
  *
- * @author Wojciech
- * @author Jakub
- * @author Patryk
+ * @author Wojciech Pokora
+ * @author Jakub Pawlak
+ * @author Patryk Szewczyk
+ * @author Katarzyna Wiater
+ * @author Agnieszka Musiał
+ * @author Michał Darkowski
  */
 public class Messanger {
 
