@@ -13,6 +13,7 @@ package messanger;
  * @author Katarzyna Wiater
  * @author Agnieszka Musiał
  * @author Michał Darkowski
+ * 
  */
 public class Messanger {
 
