@@ -32,10 +32,11 @@ public class User {
         
     }
     
-    User() throws FileNotFoundException{
+    User(String us_name) throws FileNotFoundException{
         setStatus(true);
-        if(findUser(name)==false){
-            createUser(name);
+        if(findUser(us_name)==false){
+            setId(1);
+            createUser(us_name);
         }
         
     }
@@ -94,9 +95,9 @@ public class User {
         return dir.isFile();
     }
     
-    public void createUser(String name) throws FileNotFoundException{
-        PrintWriter printer = new PrintWriter(name+".txt");
-        printer.println(this.name);
+    public void createUser(String us_name) throws FileNotFoundException{
+        PrintWriter printer = new PrintWriter(us_name+".txt");
+        printer.println(us_name);
         printer.println(this.id);
         printer.close();
     }
