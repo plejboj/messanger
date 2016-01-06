@@ -5,6 +5,9 @@
  */
 package messanger;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.io.StringReader;
 import java.io.StringWriter;
 import java.util.Date;
@@ -26,32 +29,37 @@ import org.xml.sax.InputSource;
  * @author michal
  */
 public class Message {
-    private String [] message;
+    private String message;
     private int jid_id_from;
     private int jid_id_to;
-    private Date date;
+   // private Date date;
     
     Message(){
-        this.date = null;
         this.jid_id_from = 0;
         this.jid_id_to = 0;
         this.message = null;
     }
     
+    Message(String  m, int jid_from, int jid_to){
+        this.message = m;
+        this.jid_id_from = jid_from;
+        this.jid_id_to = jid_to;
+    }
     
-    public void messageString(Message message){
+    
+    public void messageString() throws FileNotFoundException{
         final String xmlStr = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n"+
                                 "<Message> \n"+
-                                message.date.toString()+"\n"+
-                                Integer.toString(message.jid_id_to)+"\n"+
-                                Integer.toString(message.jid_id_from)+"\n"+
-                                message.message+"\n"+
+                               "<To> \n"+ Integer.toString(this.jid_id_to)+"\n"+"</To> \n"+
+                               "<From> \n"+ Integer.toString(this.jid_id_from)+"\n"+"</From> \n"+
+                                "<Text> \n"+this.message+"\n"+"</Text> \n"+
                                 "</Message>";
         
         Document doc = convertStringToDocument(xmlStr);
          
         String str = convertDocumentToString(doc);
-        System.out.println(str);
+        writeMessageToFile(str);
+        //System.out.println(str);
     }
     
     private static String convertDocumentToString(Document doc) {
@@ -83,5 +91,11 @@ public class Message {
         } 
         return null;
     }
+    
+    public void writeMessageToFile(String data) throws FileNotFoundException{
+        PrintWriter out = new PrintWriter("message.xml");
+        out.println(data);
+        out.close();
+    } 
     
 }
